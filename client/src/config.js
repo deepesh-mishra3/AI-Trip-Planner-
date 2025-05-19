@@ -1,0 +1,1 @@
+export const API_URL = 'https://ai-trip-planner-7qlg.onrender.com'; 

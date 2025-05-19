@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useCallback } from 'react';
 import axios from 'axios';
 import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../config';
 
 const TripContext = createContext();
 
@@ -30,7 +31,7 @@ export const TripProvider = ({ children }) => {
     
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/trips', getAuthHeaders());
+      const response = await axios.get(`${API_URL}/api/trips`, getAuthHeaders());
       setTrips(response.data);
       setError(null);
     } catch (error) {
@@ -48,7 +49,7 @@ export const TripProvider = ({ children }) => {
     try {
       setLoading(true);
       const response = await axios.post(
-        'http://localhost:5000/api/trips',
+        `${API_URL}/api/trips`,
         tripData,
         getAuthHeaders()
       );
@@ -70,7 +71,7 @@ export const TripProvider = ({ children }) => {
   const deleteTrip = async (tripId) => {
     try {
       setLoading(true);
-      await axios.delete(`http://localhost:5000/api/trips/${tripId}`, getAuthHeaders());
+      await axios.delete(`${API_URL}/api/trips/${tripId}`, getAuthHeaders());
       setTrips(trips.filter(trip => trip._id !== tripId));
       setError(null);
       return true;

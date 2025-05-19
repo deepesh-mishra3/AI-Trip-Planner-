@@ -14,6 +14,7 @@ import {
   FaUtensils,
   FaMapMarkedAlt
 } from 'react-icons/fa';
+import { API_URL } from '../config';
 
 const TripDetails = () => {
   const [trip, setTrip] = useState(null);
@@ -24,7 +25,7 @@ const TripDetails = () => {
   useEffect(() => {
     const fetchTrip = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/trips/${id}`, {
+        const response = await axios.get(`${API_URL}/api/trips/${id}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
         setTrip(response.data);
@@ -42,7 +43,7 @@ const TripDetails = () => {
   const handleDelete = async () => {
     if (window.confirm('Are you sure you want to delete this trip?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/trips/${id}`, {
+        await axios.delete(`${API_URL}/api/trips/${id}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
         toast.success('Trip deleted successfully');
