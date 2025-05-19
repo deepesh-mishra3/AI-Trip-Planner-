@@ -22,9 +22,7 @@ services:
     name: ai-trip-planner-api
     env: node
     buildCommand: |
-      ls -la
       cd server
-      ls -la
       npm install
     startCommand: |
       cd server
