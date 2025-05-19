@@ -21,12 +21,13 @@ services:
   - type: web
     name: ai-trip-planner-api
     env: node
-    rootDir: server
     buildCommand: |
-      cd /opt/render/project/src/server
+      ls -la
+      cd server
+      ls -la
       npm install
     startCommand: |
-      cd /opt/render/project/src/server
+      cd server
       npm start
     envVars:
       - key: NODE_ENV
